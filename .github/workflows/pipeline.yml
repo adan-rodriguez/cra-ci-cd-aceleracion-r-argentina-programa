@@ -24,9 +24,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci 
-    # --no-audit --no-fund --omit=optional
+    - run: npm ci # --no-audit --no-fund --omit=optional
     - run: npx lint-staged
     # - run: npm run build --if-present
     - run: npm test
-    - run: npm run cy-run
+    # - run: npm run cy-run
+    - name: Cypress run
+      uses: cypress-io/github-action@v4.x.x
+      with:
+          browser: chrome
